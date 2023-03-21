@@ -1,0 +1,54 @@
+CREATE TABLE Vendas (tbven) 
+( 
+ cdven INT PRIMARY KEY,  
+ dtven DATE,  
+ cdcli INT,  
+ nmcli VARCHAR(n),  
+ agecli INT,  
+ clacli INT,  
+ sxcli VARCHAR(n),  
+ cidcli VARCHAR(n),  
+ estcli VARCHAR(n),  
+ paiscli VARCHAR(n),  
+ qtven INT,  
+ vruven FLOAT,  
+ vrtven FLOAT,  
+ canal VARCHAR(n),  
+ stven INT,  
+ deleted INT,  
+ cdvdd INT,  
+ cdpro INT,  
+); 
+
+CREATE TABLE Vendedor (tbvdd) 
+( 
+ cdvdd INT PRIMARY KEY,  
+ nmvdd VARCHAR(n),  
+ sxvdd INT,  
+ perccomissao FLOAT,  
+ matfunc INT,  
+); 
+
+CREATE TABLE Dependente (tbdep) 
+( 
+ cddep INT PRIMARY KEY,  
+ nmdep VARCHAR(n),  
+ dtnasc DATE,  
+ sxdep VARCHAR(n),  
+ inepescola VARCHAR(n),  
+ cdvdd INT,  
+); 
+
+CREATE TABLE Produto (tbpro) 
+( 
+ cdpro INT PRIMARY KEY,  
+ nmpro VARCHAR(n),  
+ tppro VARCHAR(n),  
+ undpro VARCHAR(n),  
+ slpro INT,  
+ stpro VARCHAR(n),  
+); 
+
+ALTER TABLE Vendas (tbven) ADD FOREIGN KEY(cdvdd) REFERENCES Vendedor (tbvdd) (cdvdd)
+ALTER TABLE Vendas (tbven) ADD FOREIGN KEY(cdpro) REFERENCES Produto (tbpro) (cdpro)
+ALTER TABLE Dependente (tbdep) ADD FOREIGN KEY(cdvdd) REFERENCES Vendas (tbven) (cdvdd)
